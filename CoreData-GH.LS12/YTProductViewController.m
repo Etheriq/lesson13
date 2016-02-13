@@ -64,6 +64,7 @@
     NSError *error = nil;
     if ([context save:&error] == NO) {
         [self showAlertWithError:error];
+        [context refreshObject:self.product mergeChanges:YES];
     } else {
         
         [self.navigationController popViewControllerAnimated:YES];

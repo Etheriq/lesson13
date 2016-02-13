@@ -74,7 +74,7 @@
 		290633891C6603C3007DFFA6 = {
 			isa = PBXGroup;
 			children = (
-				290633941C6603C3007DFFA6 /* CoreData-GH.LS12 */,
+				290633941C6603C3007DFFA6 /* CoreData */,
 				290633931C6603C3007DFFA6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,7 +87,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		290633941C6603C3007DFFA6 /* CoreData-GH.LS12 */ = {
+		290633941C6603C3007DFFA6 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				290633C41C66407B007DFFA6 /* Customs */,
@@ -103,6 +103,7 @@
 				290633A11C6603C3007DFFA6 /* CoreData_GH_LS12.xcdatamodeld */,
 				290633951C6603C3007DFFA6 /* Supporting Files */,
 			);
+			name = CoreData;
 			path = "CoreData-GH.LS12";
 			sourceTree = "<group>";
 		};
@@ -200,7 +201,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2906338D1C6603C3007DFFA6 /* Build configuration list for PBXProject "CoreData1" */;
+			buildConfigurationList = 2906338D1C6603C3007DFFA6 /* Build configuration list for PBXProject "CoreData2" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -382,7 +383,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2906338D1C6603C3007DFFA6 /* Build configuration list for PBXProject "CoreData1" */ = {
+		2906338D1C6603C3007DFFA6 /* Build configuration list for PBXProject "CoreData2" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				290633AA1C6603C3007DFFA6 /* Debug */,

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15D21" minimumToolsVersion="Automatic">
+    <entity name="YTBasket" representedClassName="YTBasket" syncable="YES">
+        <attribute name="createdAt" optional="YES" attributeType="Date" minDateTimeInterval="473292000" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="products" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="YTProduct" inverseName="basket" inverseEntity="YTProduct" syncable="YES"/>
+    </entity>
+    <entity name="YTProduct" representedClassName="YTProduct" syncable="YES">
+        <attribute name="amount" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="isPurchased" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Decimal" minValueString="0" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="basket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="YTBasket" inverseName="products" inverseEntity="YTBasket" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="YTBasket" positionX="-297" positionY="24" width="128" height="88"/>
+        <element name="YTProduct" positionX="-54" positionY="9" width="128" height="118"/>
+    </elements>
+</model>

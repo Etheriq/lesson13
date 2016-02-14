@@ -118,16 +118,14 @@
     return cell;
 }
 
-- (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    
+-(nullable NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     id<NSFetchedResultsSectionInfo> sectionInfo = self.frc.sections[section];
-
-    YTProduct *product = [sectionInfo.objects firstObject];
-    if ([product.isPurchased boolValue]) {
-        return [NSString stringWithFormat:@"Purchased products"];
-    } else {
+    
+    if ([sectionInfo.name isEqualToString:@"0"]) {
         return [NSString stringWithFormat:@"Need buy this products"];
-    }    
+    }
+    
+    return [NSString stringWithFormat:@"Purchased products"];
 }
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
@@ -142,13 +140,11 @@
         }
     }
     
-    if (total > 0) {
-        
+    if ([sectionInfo.name isEqualToString:@"1"]) {
         return [NSString stringWithFormat:@"Total cost: $%.2f", total];
-    } else {
-        
-        return nil;
     }
+    
+    return nil;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -41,7 +41,15 @@
     
     bascket = [NSEntityDescription insertNewObjectForEntityForName:[[YTBasket class] description] inManagedObjectContext:context];
     bascket.title = self.titleField.text;
-    bascket.createdAt = self.createdDatePicker.date;
+    
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *comps = [calendar components:(NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitTimeZone) fromDate:self.createdDatePicker.date];
+    comps.hour = 0;
+    comps.minute = 0;
+    comps.second = 0;
+    NSDate *date = [calendar dateFromComponents:comps];
+    
+    bascket.createdAt = date;
     
     NSError *error = nil;
     if ([context save:&error] == NO) {

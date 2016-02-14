@@ -120,41 +120,35 @@
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    if (section == 0) {
-        
-        return [NSString stringWithFormat:@"Need buy this products"];
-    }
-    if (section == 1){
-        
+    id<NSFetchedResultsSectionInfo> sectionInfo = self.frc.sections[section];
+
+    YTProduct *product = [sectionInfo.objects firstObject];
+    if ([product.isPurchased boolValue]) {
         return [NSString stringWithFormat:@"Purchased products"];
-    }
-    
-    return nil;
+    } else {
+        return [NSString stringWithFormat:@"Need buy this products"];
+    }    
 }
 
 - (nullable NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section {
     
-    NSArray *products = [self.frc fetchedObjects];
-    self.purchasedProducts = nil;
-    self.purchasedProducts = [NSMutableArray array];
+    id<NSFetchedResultsSectionInfo> sectionInfo = self.frc.sections[section];
+    float total = 0;
     
-    for (YTProduct *product in products) {
+    for (YTProduct *product in sectionInfo.objects) {
         if ([product.isPurchased boolValue]) {
-            [self.purchasedProducts addObject:product];
-        }
-    }
-    
-    if (section == 1 && [self.purchasedProducts count]) {
-        float total = 0;
-    
-        for (YTProduct *product in self.purchasedProducts) {
+            
             total += [product.amount intValue] * [product.price floatValue];
         }
-        
-        return [NSString stringWithFormat:@"Total cost: $%.2f", total];
     }
     
-    return nil;
+    if (total > 0) {
+        
+        return [NSString stringWithFormat:@"Total cost: $%.2f", total];
+    } else {
+        
+        return nil;
+    }
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -215,6 +209,12 @@
             [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
                           withRowAnimation:UITableViewRowAnimationRight];
             break;
+        case NSFetchedResultsChangeUpdate:
+            [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:sectionIndex]
+                          withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+            
         default:
             break;
     }
@@ -263,5 +263,8 @@
 -(void) controllerDidChangeContent:(NSFetchedResultsController *)controller {
     [self.tableView endUpdates];
 }
+
+
+
 
 @end
